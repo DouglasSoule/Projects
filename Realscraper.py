@@ -41,7 +41,8 @@ for data_list in list_of_rows:
     data_set['winner'] = data_list[2]
     data_set['loser'] = data_list[4]
     data_set['score'] = f'{data_list[3]}-{data_list[5]}'
-    print(data_set)
+    # print(data_set)
+    ordered_data.append(data_set)
 # for row in table.findAll('tr'):
     # print(row.prettify())
     # list_of_cells = []
@@ -52,6 +53,10 @@ for data_list in list_of_rows:
 
 
 # write
-# outfile = open('schedule.csv', 'w+')
-# writer = csv.writer(outfile)
-# writer.writerow(["Sport", "Date"])
+outfile = open('data/schedule.csv', 'w+')
+writer = csv.writer(outfile)
+writer.writerow(["Sport", "Date", "winner", "loser", "score"])
+for data_dict in ordered_data:
+    writer.writerow(data_dict.values())
+
+outfile.close()
