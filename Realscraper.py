@@ -30,13 +30,12 @@ for page_num in range(num_pages):
     # print(schedule_table)
     # extract
     list_of_page_rows = []
-    print('getting list_of_page_rows')
     for row in scores_table.findAll('tr'):
         # print(row)
-        print('getting cells')
         list_of_cells = []
         # loop through rows
         for cell in row.findAll('td'):
+            print('getting cells')
             # print(cell.text)
             list_of_cells.append(cell.text)
         # print(list_of_cells)
@@ -44,6 +43,7 @@ for page_num in range(num_pages):
     # print(list_of_rows)
     # for row in list_of_rows:
         # print(row)
+    all_rows.append(list_of_page_rows)
     # ordered_data = []
     print('building dicts')
     for data_list in list_of_page_rows:
@@ -53,9 +53,9 @@ for page_num in range(num_pages):
         data_set['winner'] = data_list[2]
         data_set['loser'] = data_list[4]
         data_set['score'] = f'{data_list[3]}-{data_list[5]}'
-        # print(type(data_set))
-        # print(data_set)
-        # break
+        print(type(data_set))
+        print(data_set)
+        break
         all_rows.append(data_set)
     # for row in table.findAll('tr'):
         # print(row.prettify())
