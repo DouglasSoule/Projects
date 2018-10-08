@@ -76,3 +76,8 @@ if __name__ == '__main__':
     address = '284 Prospect St., Morgantown, WV'
     # address = '1284 Prospect St., Morgantown, WV'
     geolocate(address)
+
+if __name__ == '__main__':
+    address = '284 Prospect St., Morgantown, WV'
+    # address = '1284 Prospect St., Morgantown, WV'
+    geolocate(address)
