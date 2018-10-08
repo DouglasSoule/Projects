@@ -61,7 +61,7 @@ def get_geolocation_data(address):
 
 def write_output_sentence(geolocator):
     # print(geolocator)
-    print(f'Some stuff about where I live: My address is {geolocator["clean_address"][:-5]}, at latitude {geolocator["latitude"]} and longitude {geolocator["longitude"]}, in {geolocator["county"]}, {geolocator["state_long"]}, {geolocator["country"]}.')
+    print(f'Some stuff about where I do journalism: I do journalistic things at {geolocator["clean_address"][:-5]}, at latitude {geolocator["latitude"]} and longitude {geolocator["longitude"]}, in {geolocator["county"]}, {geolocator["state_long"]}, {geolocator["country"]}.')
 
 
 def geolocate(address):
