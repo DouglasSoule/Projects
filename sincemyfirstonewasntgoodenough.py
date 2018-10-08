@@ -69,11 +69,17 @@ def write_MIC_output_sentence(geolocator):
     print(f'Some stuff about where I learn about about journalism, the MIC: I learn things at{geolocator["clean_address"][:-5]}, at latitude {geolocator["latitude"]} and longitude {geolocator["longitude"]}, in {geolocator["county"]}, {geolocator["state_long"]}, {geolocator["country"]}.')
 # I also made this second output sentence something that explains what the address is and what it means to me. The address is is the MIC, where I learn about journalism.
 
-def geolocate(address):
-    geolocator_data = get_geolocation_data(address1)
-    geolocator_data = get_geolocation_data(address2)
+def geolocate(address1):
+    geolocator_data = get_geolocation_data(address)
     if geolocator_data:
-        write_output_sentence(geolocator_data)
+        write_DA_output_sentence(geolocator_data)
+    else:
+        print(geolocator_data)
+
+def geolocate(address2):
+    geolocator_data = get_geolocation_data(address)
+    if geolocator_data:
+        write_MIC_output_sentence(geolocator_data)
     else:
         print(geolocator_data)
 
