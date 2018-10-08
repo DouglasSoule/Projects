@@ -70,7 +70,8 @@ def write_MIC_output_sentence(geolocator):
 # I also made this second output sentence something that explains what the address is and what it means to me. The address is is the MIC, where I learn about journalism.
 
 def geolocate(address):
-    geolocator_data = get_geolocation_data(address)
+    geolocator_data = get_geolocation_data(address1)
+    geolocator_data = get_geolocation_data(address2)
     if geolocator_data:
         write_output_sentence(geolocator_data)
     else:
@@ -80,4 +81,10 @@ def geolocate(address):
 if __name__ == '__main__':
     address = '284 Prospect St., Morgantown, WV'
     # address = '284 Prospect St., Morgantown, WV'
-    geolocate(address)
+    geolocate(address1)
+
+    if __name__ == '__main__':
+        address = '62 Morrill Way, Morgantown, WV 26506'
+        # address = '62 Morrill Way, Morgantown, WV 26506'
+        geolocate(address2)
+        #Since I want this address to be different from the one that is listed for the DA, my favorite place in the world, I simply change it to the address for MIC, which is the location I'm seeking locational information for.
