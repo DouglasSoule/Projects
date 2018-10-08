@@ -30,7 +30,7 @@ def get_geolocation_data(address):
                 # print(response.json()['results'][0]['address_components'])
                 address_components = response.json()['results'][0]['address_components']
 
-                # the API is maddeningly stingy with lookups -- especially for data
+
                 # that can move index positions. I feel dirty writing a loop here.
                 # But Google made me.
                 for line in address_components:
@@ -94,8 +94,7 @@ def get_geolocation_data(address):
         if response.status_code == 200:
             # print(response.json())
 
-            # addresses are self-reported and human-entered; they will always be
-            # a little messy and the API will always miss a few
+        
             try:
                 # print(response.json()['results'])
                 # print(response.json()['results'][0])
