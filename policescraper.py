@@ -26,7 +26,7 @@ for row in table.findAll('tr'):
     list_of_rows.append(list_of_cells[:-1])
 
 
-# write
-# outfile = open('li class="incident"')
-# writer = csv.writer(outfile)
-# writer.writerow(["Occured ", "Comments", "Building", "Address", "Disposition"])
+write
+outfile = open('li class="incident"')
+writer = csv.writer(outfile)
+writer.writerow(["Occured ", "Comments", "Building", "Address", "Disposition"])
