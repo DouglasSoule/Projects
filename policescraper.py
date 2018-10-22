@@ -27,6 +27,6 @@ for row in table.findAll('tr'):
 
 
 # write
-# outfile = open('data/inmates.csv', 'w+')
+# outfile = open('li class="incident"')
 # writer = csv.writer(outfile)
 # writer.writerow(["Occured ", "Comments", "Building", "Address", "Disposition"])
