@@ -29,4 +29,4 @@ for row in table.findAll('tr'):
 write
 outfile = open('li class="incident"')
 writer = csv.writer(outfile)
-writer.writerow(["Occured ", "Comments", "Building", "Address", "Disposition"])
+writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"])
