@@ -13,20 +13,21 @@ html = response.content
 # parse
 soup = BeautifulSoup(html, 'lxml')
 # print(soup.prettify())
-table = soup.find('tbody', attrs={'class': 'stripe'})
+incident_months = soup.findAll('div', attrs={'class': 'accordion__panel'})
 # extract
 list_of_rows = []
-for row in table.findAll('tr'):
+for month in incident_months:
+    print(month.findAll('li', attrs={'class': 'incident'}))     
     # print(row.prettify())
     list_of_cells = []
-    for cell in row.findAll('td'):
-        list_of_cells.append(cell.text)
+#    for cell in row.findAll('td'):
+    #    list_of_cells.append(cell.text)
 
-    print(list_of_cells[:-1])
-    list_of_rows.append(list_of_cells[:-1])
-
-
-write
-outfile = open('li class="incident"')
-writer = csv.writer(outfile)
-writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"])
+#    print(list_of_cells[:-1])
+#     list_of_rows.append(list_of_cells[:-1])
+#
+#
+# write
+# outfile = open('li class="incident"')
+# writer = csv.writer(outfile)
+# writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"])
