@@ -17,8 +17,12 @@ incident_months = soup.findAll('div', attrs={'class': 'accordion__panel'})
 # extract
 list_of_rows = []
 for month in incident_months:
-    print(month.findAll('li', attrs={'class': 'incident'}))     
-    # print(row.prettify())
+    # print(month.findAll('li', attrs={'class': 'incident'}))
+    # print('=' * 80)
+    incident_parents = month.findAll('li', attrs={'class': 'incident'})
+    for incident in incident_parents:
+    #    print(incident.findAll('div', attrs={'class': 'log-copy'}))
+        incidents = incident.findAll('div', attrs={'class': 'log-copy'})
     list_of_cells = []
 #    for cell in row.findAll('td'):
     #    list_of_cells.append(cell.text)
