@@ -21,9 +21,17 @@ for month in incident_months:
     # print('=' * 80)
     incident_parents = month.findAll('li', attrs={'class': 'incident'})
     for incident in incident_parents:
-    #    print(incident.findAll('div', attrs={'class': 'log-copy'}))
-        incidents = incident.findAll('div', attrs={'class': 'log-copy'})
-    list_of_cells = []
+        #print(incident.findAll('div', attrs={'class': 'log-copy'}))
+        #incidents = incident.findAll('div', attrs={'class': 'log-copy'})
+        incident_type = incident.find('h4')
+        print(incident_type.text)
+        p_tags = incident.findAll('p')
+        for p in p_tags:
+            print(p.text)
+
+    #    print(p_tags)
+    #list_of_cells = []
+
 #    for cell in row.findAll('td'):
     #    list_of_cells.append(cell.text)
 
