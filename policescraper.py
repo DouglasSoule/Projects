@@ -1,5 +1,7 @@
 # python imports
 import csv
+
+
 # external imports
 import requests
 from bs4 import BeautifulSoup
