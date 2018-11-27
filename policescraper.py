@@ -1,7 +1,6 @@
 # python imports
 import csv
-
-
+from pprint import pprint
 # external imports
 import requests
 from bs4 import BeautifulSoup
@@ -17,7 +16,7 @@ soup = BeautifulSoup(html, 'lxml')
 # print(soup.prettify())
 incident_months = soup.findAll('div', attrs={'class': 'accordion__panel'})
 # extract
-list_of_rows = []
+incidents = {}
 for month in incident_months:
     # print(month.findAll('li', attrs={'class': 'incident'}))
     # print('=' * 80)
@@ -26,13 +25,41 @@ for month in incident_months:
         #print(incident.findAll('div', attrs={'class': 'log-copy'}))
         #incidents = incident.findAll('div', attrs={'class': 'log-copy'})
         incident_type = incident.find('h4')
-        print(incident_type.text)
+        type_text = incident_type.text
+        type_list = type_text.split(':')
+        incidents[type_list[0]] = {
+                "type": type_list[1].strip()
+        }
+
         p_tags = incident.findAll('p')
         for p in p_tags:
-            print(p.text)
+            # print(p.text)
+            if ":" in p.text:
+                # p_split = [t.strip() for t in p.text.split(":", maxsplit=1)]
+                p_split = p.text.split(":", maxsplit=1)
+                # print(p_split)
 
-    #    print(p_tags)
-    #list_of_cells = []
+                for idx, p in enumerate(p_split):
+                    p_split[idx] = p.strip()
+
+                # print(p_split)
+                # print('*' * 80)
+                incidents[type_list[0]][p_split[0].lower()] = p_split[1]
+
+
+
+            # print(p.text.split).replace("\n", ""))
+                # print(sentence).replace("\n", ""))
+
+
+
+    #    print('*' * 80)
+# pprint(incidents)
+# pprint(incidents['#18-05292'])
+# for key in incidents.keys():
+#     if incidents[key]['building'] == 'WVU DADISMAN HALL':
+#         if incidents[key]['disposition'] == 'Clear by Arrest':
+#             pprint(incidents[key])
 
 #    for cell in row.findAll('td'):
     #    list_of_cells.append(cell.text)
@@ -44,4 +71,4 @@ for month in incident_months:
 # write
 # outfile = open('li class="incident"')
 # writer = csv.writer(outfile)
-# writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"])
+# writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"]
