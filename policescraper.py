@@ -1,5 +1,6 @@
 # python imports
 import csv
+from datetime import date
 from pprint import pprint
 # external imports
 import requests
@@ -46,7 +47,22 @@ for month in incident_months:
                 # print('*' * 80)
                 incidents[type_list[0]][p_split[0].lower()] = p_split[1]
 
+# pprint(incidents)
+for incident_key in incidents.keys():
+    incidents[incident_key]['scrape_date'] = f'{date.today()}'
+    incidents[incident_key]['occurred_date'] = incidents[incident_key]['occurred'].split(' ')[0]
+    incidents[incident_key]['occurred_time'] = incidents[incident_key]['occurred'].split(' ')[1]
 
+#from geopy.geocoders import GoogleV3
+#geolocator = GoogleV3()
+#location = geolocator.reverse("")
+#print(location.address)
+# pprint(incidents)
+
+#for incident_key in incidents.keys():
+    #if '.' in incidents[incident_key]['address'] and '-' in incidents[incident_key]['address']:
+        #print(incidents[incident_key]['address'])
+    #    print(incidents[incident_key]['type'])
 
             # print(p.text.split).replace("\n", ""))
                 # print(sentence).replace("\n", ""))
