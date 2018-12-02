@@ -5,6 +5,8 @@ from pprint import pprint
 # external imports
 import requests
 from bs4 import BeautifulSoup
+#project level imports
+from secret_settings import geojson_stub, geojson_key
 #get
 url = 'https://police.wvu.edu/clery-act/crime-log'
 response = requests.get(url)
@@ -53,11 +55,14 @@ for incident_key in incidents.keys():
     incidents[incident_key]['occurred_date'] = incidents[incident_key]['occurred'].split(' ')[0]
     incidents[incident_key]['occurred_time'] = incidents[incident_key]['occurred'].split(' ')[1]
 
-#from geopy.geocoders import GoogleV3
-#geolocator = GoogleV3()
-#location = geolocator.reverse("")
-#print(location.address)
-# pprint(incidents)
+address = "39.6511, -79.9605, MORGANTOWN"
+params = {"address": address, "key": geojson_key}
+api_response = requests.get(geojson_stub,params=params)
+pprint(api_response.json())
+print(len(api_response.json()['results']))
+
+
+
 
 #for incident_key in incidents.keys():
     #if '.' in incidents[incident_key]['address'] and '-' in incidents[incident_key]['address']:
