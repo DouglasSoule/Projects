@@ -55,6 +55,10 @@ for incident_key in incidents.keys():
     incidents[incident_key]['occurred_date'] = incidents[incident_key]['occurred'].split(' ')[0]
     incidents[incident_key]['occurred_time'] = incidents[incident_key]['occurred'].split(' ')[1]
 
+
+
+
+
 address = "39.6511, -79.9605, MORGANTOWN"
 params = {"address": address, "key": geojson_key}
 api_response = requests.get(geojson_stub,params=params)
@@ -68,6 +72,14 @@ print(len(api_response.json()['results']))
     #if '.' in incidents[incident_key]['address'] and '-' in incidents[incident_key]['address']:
         #print(incidents[incident_key]['address'])
     #    print(incidents[incident_key]['type'])
+
+    if lat and lng:
+        incident['location_type'] = 'approximate'
+    else:
+        incident['location_type'] = 'address'
+
+    for address_type in address:
+        address[address_type]['street'] = 'approximate'
 
             # print(p.text.split).replace("\n", ""))
                 # print(sentence).replace("\n", ""))
