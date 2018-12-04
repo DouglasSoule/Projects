@@ -1,7 +1,9 @@
 # python imports
+import json
 import csv
 from datetime import date
 from pprint import pprint
+from collections import Counter
 # external imports
 import requests
 from bs4 import BeautifulSoup
@@ -59,19 +61,32 @@ for incident_key in incidents.keys():
 
 
 
-address = "39.6511, -79.9605, MORGANTOWN"
-params = {"address": address, "key": geojson_key}
-api_response = requests.get(geojson_stub,params=params)
-pprint(api_response.json())
-print(len(api_response.json()['results']))
+# address = "39.6511, -79.9605, MORGANTOWN"
+# params = {"address": address, "key": geojson_key}
+# api_response = requests.get(geojson_stub,params=params)
+# pprint(api_response.json())
+# print(len(api_response.json()['results']))
 
 
 
 
-#for incident_key in incidents.keys():
-    #if '.' in incidents[incident_key]['address'] and '-' in incidents[incident_key]['address']:
-        #print(incidents[incident_key]['address'])
-    #    print(incidents[incident_key]['type'])
+for incident_key in incidents.keys():
+    if '.' in incidents[incident_key]['address'] and '-' in incidents[incident_key]['address']:
+        incidents[incident_key]['address_type'] = 'approximate'
+    else:
+        incidents[incident_key]['address_type'] = 'street'
+
+j = json.dumps(incidents, sort_keys=True, indent=4)
+with open('data/incidents/incidents.json', 'w+') as f:
+    print(j, file=f)
+
+# street_addresses = []
+# for incident_key in incidents.keys():
+#     if incidents[incident_key]['address_type'] == 'street':
+#         street_addresses.append(incidents[incident_key]['address'])
+#
+# pprint(Counter(street_addresses).most_common(10))
+
 
         #if lat and lng:
         #    incident['location_type'] = 'approximate'
