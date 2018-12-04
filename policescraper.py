@@ -73,10 +73,10 @@ print(len(api_response.json()['results']))
         #print(incidents[incident_key]['address'])
     #    print(incidents[incident_key]['type'])
 
-    if lat and lng:
-            incident['location_type'] = 'approximate'
-    else:
-            incident['location_type'] = 'address'
+        #if lat and lng:
+        #    incident['location_type'] = 'approximate'
+    #    else:
+        #    incident['location_type'] = 'address'
 
     #for address_type in address:
         #address[address_type]['street'] = 'approximate'
