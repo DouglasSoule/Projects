@@ -1,6 +1,7 @@
 # python imports
 import json
 import csv
+import codecs
 from datetime import date
 from pprint import pprint
 from collections import Counter
@@ -14,10 +15,14 @@ url = 'https://police.wvu.edu/clery-act/crime-log'
 response = requests.get(url)
 # print(response)
 html = response.content
+with open(f"data/html/WVUPDLOG_{date.today()}", 'w+') as html_file:
+    print(html, file=html_file)
 #print(html)
 
+fhtml = codecs.open(f'data/html/WVUPDLOG_{date.today()}', 'r')
+
 # parse
-soup = BeautifulSoup(html, 'lxml')
+soup = BeautifulSoup(fhtml.read(), 'lxml')
 # print(soup.prettify())
 incident_months = soup.findAll('div', attrs={'class': 'accordion__panel'})
 # extract
@@ -39,9 +44,10 @@ for month in incident_months:
         p_tags = incident.findAll('p')
         for p in p_tags:
             # print(p.text)
-            if ":" in p.text:
+            text = p.text.replace('\\n', '').replace('\\', '')
+            if ":" in text:
                 # p_split = [t.strip() for t in p.text.split(":", maxsplit=1)]
-                p_split = p.text.split(":", maxsplit=1)
+                p_split = text.split(":", maxsplit=1)
                 # print(p_split)
 
                 for idx, p in enumerate(p_split):
@@ -68,6 +74,10 @@ for incident_key in incidents.keys():
 # print(len(api_response.json()['results']))
 
 
+s = '#18-03127'
+parts = s.split('-')
+incident_no = int(parts[1])
+year = parts[0].replace('#', '')
 
 
 for incident_key in incidents.keys():
@@ -79,6 +89,7 @@ for incident_key in incidents.keys():
 j = json.dumps(incidents, sort_keys=True, indent=4)
 with open('data/incidents/incidents.json', 'w+') as f:
     print(j, file=f)
+
 
 # street_addresses = []
 # for incident_key in incidents.keys():
