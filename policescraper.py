@@ -1,5 +1,8 @@
 # python imports
 import json
+import pandas as pd
+df = pd.read_json('incidents.json')
+df.to_csv(policedata.csv)
 import csv
 import codecs
 from datetime import date
@@ -62,8 +65,6 @@ for incident_key in incidents.keys():
     incidents[incident_key]['scrape_date'] = f'{date.today()}'
     incidents[incident_key]['occurred_date'] = incidents[incident_key]['occurred'].split(' ')[0]
     incidents[incident_key]['occurred_time'] = incidents[incident_key]['occurred'].split(' ')[1]
-
-
 
 
 
