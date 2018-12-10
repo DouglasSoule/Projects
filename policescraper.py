@@ -1,8 +1,21 @@
-# python imports
+  # python imports
 import json
-import pandas as pd
-df = pd.read_json('incidents.json')
-df.to_csv(policedata.csv)
+import csv, json, sys
+#if you are not using utf-8 files, remove the next line
+#sys.setdefaultencoding("UTF-8") #set the encode to utf8
+#check if you pass the input file and output file
+if sys.argv[1] is not None and sys.argv[2] is not None:
+    fileInput = sys.argv[1]
+    fileOutput = sys.argv[2]
+    #recommended by stackflow.
+    inputFile = open(incidents.json) #open json file
+    outputFile = open(police.csv, 'w') #load csv file
+    data = json.load(incidents.json) #load json content
+    inputFile.close() #close the input file
+    output = csv.writer(police.csv) #create a csv.write
+    output.writerow(data[0].keys())  # header row
+    for row in data:
+        output.writerow(row.values()) #values row
 import csv
 import codecs
 from datetime import date
@@ -132,3 +145,4 @@ with open('data/incidents/incidents.json', 'w+') as f:
 # outfile = open('li class="incident"')
 # writer = csv.writer(outfile)
 # writer.writerow(["Date", "#", "Occured ", "Comments", "Building", "Address", "Disposition"]
+
